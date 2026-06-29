@@ -1,0 +1,48 @@
+# Root .gitignore for TaskFlow (Monorepo)
+
+# IDEs and Editors
+.idea/
+.vscode/
+*.swp
+*.swo
+*.iml
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+# Operating System Files
+.DS_Store
+Thumbs.db
+
+# Environment Secrets
+.env
+.env.local
+.env.*.local
+
+# Backend (Maven/Java)
+**/target/
+**/.mvn/wrapper/maven-wrapper.jar
+**/HELP.md
+
+# Frontend (Node/React)
+**/node_modules/
+**/dist/
+**/dist-ssr/
+**/npm-debug.log*
+**/yarn-debug.log*
+**/yarn-error.log*
+**/pnpm-debug.log*
+
+# Docker
+.docker/
+/.env.example
+/.claude/
+/plan.md
+/prd.md
+/requisitos.pdf
+/spec.md
+/task.md
