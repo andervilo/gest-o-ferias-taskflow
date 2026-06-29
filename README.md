@@ -39,13 +39,16 @@ Sistema full-stack para gerenciamento de colaboradores e pedidos de férias, com
 
 ## 🔑 Usuários para Teste (Demo)
 
-O sistema já vem populado (via Flyway seed) com os seguintes usuários:
+O sistema já vem populado (via Flyway seed) com os seguintes usuários (a senha para **todos** é `password`):
 
-| Perfil | Email | Senha |
+| Perfil | Nome | Email |
 | :--- | :--- | :--- |
-| **Admin** | `admin@taskflow.com` | `admin123` |
-| **Manager** | `manager1@taskflow.com` | `password` |
-| **Colaborador** | `collab1@taskflow.com` | `password` |
+| **Admin** | `Ana Admin` | `admin@taskflow.com` |
+| **Manager** | `Marcos Manager` | `manager1@taskflow.com` |
+| **Manager** | `Marta Manager` | `manager2@taskflow.com` |
+| **Colaborador** | `Carla Colab` | `carla@taskflow.com` |
+| **Colaborador** | `Caio Colab` | `caio@taskflow.com` |
+| **Colaborador** | `Cris Colab` | `cris@taskflow.com` |
 
 ## 🏗️ Arquitetura e Decisões
 
