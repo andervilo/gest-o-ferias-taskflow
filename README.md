@@ -73,6 +73,3 @@ Para rodar os testes do backend manualmente:
 cd projeto-TaskFlow
 ./mvnw test
 ```
-
----
-Desenvolvido por Junie (AI Agent) como parte do desafio técnico LBC.
