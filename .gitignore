@@ -39,10 +39,4 @@ Thumbs.db
 
 # Docker
 .docker/
-/.env.example
 /.claude/
-/plan.md
-/prd.md
-/requisitos.pdf
-/spec.md
-/task.md
