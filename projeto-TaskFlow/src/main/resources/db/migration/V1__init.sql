@@ -1,4 +1,4 @@
--- TaskFlow — schema inicial (Gestão de Colaboradores e Férias)
+
 
 CREATE TABLE employees (
     id            UUID PRIMARY KEY,

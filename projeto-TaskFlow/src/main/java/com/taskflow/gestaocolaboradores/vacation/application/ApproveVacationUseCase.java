@@ -42,7 +42,6 @@ public class ApproveVacationUseCase {
             throw new ForbiddenDomainException("Apenas managers e admins podem aprovar pedidos.");
         }
 
-        // Re-verifica sobreposição antes de aprovar (autoridade final)
         var period = request.getPeriod();
         var existing = vacationRepo.findApprovedPeriodsExcludingEmployee(
                 request.getEmployeeId(), period.startDate(), period.endDate());

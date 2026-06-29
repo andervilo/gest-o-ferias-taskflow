@@ -56,7 +56,6 @@ public class SecurityConfig {
                 .build();
     }
 
-    // Evita que o JwtAuthenticationFilter seja registrado duas vezes (Spring Boot auto-registra @Component filters).
     @Bean
     public FilterRegistrationBean<JwtAuthenticationFilter> jwtFilterRegistration(JwtAuthenticationFilter filter) {
         FilterRegistrationBean<JwtAuthenticationFilter> reg = new FilterRegistrationBean<>(filter);

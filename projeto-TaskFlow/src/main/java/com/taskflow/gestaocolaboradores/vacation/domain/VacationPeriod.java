@@ -13,7 +13,7 @@ public record VacationPeriod(LocalDate startDate, LocalDate endDate) {
             throw new ValidationDomainException("endDate deve ser igual ou posterior a startDate.");
     }
 
-    /** Verifica sobreposição inclusiva: [a1,a2] ∩ [b1,b2] ≠ ∅ ↔ a1<=b2 AND b1<=a2 */
+    
     public boolean overlapsWith(VacationPeriod other) {
         return !this.startDate.isAfter(other.endDate) && !other.startDate.isAfter(this.endDate);
     }

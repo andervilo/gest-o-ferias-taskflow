@@ -38,7 +38,6 @@ public class GetEmployeeUseCase {
             if (!isMine) throw new ForbiddenDomainException("Acesso negado a este colaborador.");
             return mapper.toResult(employee);
         }
-        // COLLABORATOR: só vê a si mesmo
         if (!current.id().equals(id)) {
             throw new ForbiddenDomainException("Colaboradores só podem visualizar o próprio cadastro.");
         }

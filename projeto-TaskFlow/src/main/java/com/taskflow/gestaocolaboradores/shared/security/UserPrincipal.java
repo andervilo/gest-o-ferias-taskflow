@@ -15,8 +15,8 @@ import java.util.UUID;
 public class UserPrincipal implements UserDetails {
 
     private final UUID id;
-    private final String username;   // email
-    private final String password;   // hash — null quando carregado via JWT
+    private final String username;
+    private final String password;
     private final String fullName;
     private final Role role;
 

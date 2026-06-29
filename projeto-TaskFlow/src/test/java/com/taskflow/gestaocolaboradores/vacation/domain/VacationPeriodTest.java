@@ -59,7 +59,6 @@ class VacationPeriodTest {
 
     @Test
     void overlaps_adjacent_returnsFalse() {
-        // [1,5] and [6,10] are adjacent but not overlapping
         var a = new VacationPeriod(D1, D5);
         var b = new VacationPeriod(LocalDate.of(2026, 8, 6), D10);
         assertThat(a.overlapsWith(b)).isFalse();
@@ -81,7 +80,6 @@ class VacationPeriodTest {
 
     @Test
     void overlaps_touchingAtEndpoint_returnsTrue() {
-        // [1,5] and [5,10] share D5 — overlap
         var a = new VacationPeriod(D1, D5);
         var b = new VacationPeriod(D5, D10);
         assertThat(a.overlapsWith(b)).isTrue();

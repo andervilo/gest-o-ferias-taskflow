@@ -15,7 +15,6 @@ class VacationSpecifications {
 
         if (filter.employeeIds() != null) {
             if (filter.employeeIds().isEmpty()) {
-                // scopo vazio: retorna nenhum resultado
                 spec = spec.and(inEmployees(List.of()));
             } else {
                 spec = spec.and(inEmployees(filter.employeeIds()));

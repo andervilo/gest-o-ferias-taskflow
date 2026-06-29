@@ -37,7 +37,6 @@ public class GetCalendarEntriesUseCase {
 
         var vacations = vacationRepo.findActiveInPeriod(from, to, scope);
 
-        // build id→name map to avoid N+1 lookups
         var employeeIds = vacations.stream()
                 .map(v -> v.getEmployeeId())
                 .collect(Collectors.toSet());

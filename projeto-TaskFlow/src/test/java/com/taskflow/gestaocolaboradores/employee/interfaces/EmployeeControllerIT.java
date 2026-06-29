@@ -27,7 +27,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @Testcontainers
 class EmployeeControllerIT {
 
-    // Jackson 2.x ObjectMapper (não registrado como bean no Boot 4.x / Jackson 3.x)
     private static final ObjectMapper JSON = new ObjectMapper();
 
     @Container
@@ -63,8 +62,6 @@ class EmployeeControllerIT {
         return JSON.readTree(body).get("token").asText();
     }
 
-    // --- Auth tests ---
-
     @Test
     void login_withValidCredentials_returnsToken() throws Exception {
         mvc.perform(post("/api/auth/login")
@@ -90,8 +87,6 @@ class EmployeeControllerIT {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.role").value("ADMIN"));
     }
-
-    // --- Employee access control tests ---
 
     @Test
     void listEmployees_withoutToken_returns401() throws Exception {

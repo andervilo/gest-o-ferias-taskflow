@@ -39,14 +39,12 @@ public class ListVacationsUseCase {
 
         var domainPage = vacationRepo.findAll(filter, page, size, sortBy, sortDir);
 
-        // batch-fetch employees to avoid N+1
         var employeeIds = domainPage.content().stream()
                 .map(VacationRequest::getEmployeeId)
                 .collect(Collectors.toSet());
         Map<UUID, Employee> employeeById = employeeRepo.findAllById(employeeIds).stream()
                 .collect(Collectors.toMap(Employee::getId, e -> e));
 
-        // batch-fetch managers
         Set<UUID> managerIds = employeeById.values().stream()
                 .map(Employee::getManagerId)
                 .filter(Objects::nonNull)
@@ -95,7 +93,6 @@ public class ListVacationsUseCase {
             }
             return new VacationFilter(List.copyOf(subordinateIds), filterStatuses, filterFrom, filterTo);
         }
-        // ADMIN: combina filtros de employeeId, managerId e name (interseção)
         Set<UUID> ids = null;
         if (filterEmployeeId != null) {
             ids = new HashSet<>(Set.of(filterEmployeeId));

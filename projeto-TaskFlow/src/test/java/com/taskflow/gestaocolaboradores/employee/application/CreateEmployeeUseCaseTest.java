@@ -93,9 +93,8 @@ class CreateEmployeeUseCaseTest {
         when(repo.existsByEmail(anyString())).thenReturn(false);
         Employee saved = Employee.create("Ana", "ana@x.com", Role.ADMIN, null, "hash");
         when(repo.save(any())).thenReturn(saved);
-        when(mapper.toResult(any())).thenReturn(null); // not checking result here
+        when(mapper.toResult(any())).thenReturn(null);
 
         useCase.execute(new CreateEmployeeCommand("Ana", "ana@x.com", "pass", Role.ADMIN, null));
-        // no exception = pass
     }
 }

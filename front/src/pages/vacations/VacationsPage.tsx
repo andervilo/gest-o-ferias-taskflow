@@ -131,9 +131,9 @@ export function VacationsPage() {
         <Button onClick={openCreate}><Plus size={16} /> Solicitar</Button>
       </div>
 
-      {/* Filters */}
+      {}
       <div className="mb-4 flex flex-wrap items-end gap-3">
-        {/* Multi-status pills */}
+        {}
         <div className="flex flex-col gap-1">
           <label className="text-xs font-medium uppercase text-gray-500">Status</label>
           <div className="flex gap-1">
@@ -151,7 +151,7 @@ export function VacationsPage() {
           </div>
         </div>
 
-        {/* Collaborator name search */}
+        {}
         {canApproveReject && (
           <div className="flex flex-col gap-1">
             <label className="text-xs font-medium uppercase text-gray-500">Colaborador</label>
@@ -165,7 +165,7 @@ export function VacationsPage() {
           </div>
         )}
 
-        {/* Manager filter — ADMIN only */}
+        {}
         {isAdmin && (
           <div className="flex flex-col gap-1">
             <label className="text-xs font-medium uppercase text-gray-500">Manager</label>
@@ -182,7 +182,7 @@ export function VacationsPage() {
           </div>
         )}
 
-        {/* Period filters */}
+        {}
         <div className="flex flex-col gap-1">
           <label className="text-xs font-medium uppercase text-gray-500">Período — início</label>
           <input
@@ -215,7 +215,7 @@ export function VacationsPage() {
         )}
       </div>
 
-      {/* Table */}
+      {}
       <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm">
         <table className="w-full text-sm">
           <thead className="bg-gray-50 text-xs uppercase text-gray-500">

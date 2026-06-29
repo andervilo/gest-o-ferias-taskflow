@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/taskflow
+    url: jdbc:postgresql:
     username: ${DB_USER:postgres}
     password: ${DB_PASSWORD:postgres}
   jpa:

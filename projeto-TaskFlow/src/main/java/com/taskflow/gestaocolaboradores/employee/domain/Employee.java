@@ -40,7 +40,6 @@ public class Employee {
                 managerId, passwordHash, true, Instant.now(), Instant.now());
     }
 
-    // Reconstitui do banco sem regras de criação.
     public static Employee reconstitute(UUID id, String name, String emailStr, Role role,
                                          UUID managerId, String passwordHash, boolean active,
                                          Instant createdAt, Instant updatedAt) {

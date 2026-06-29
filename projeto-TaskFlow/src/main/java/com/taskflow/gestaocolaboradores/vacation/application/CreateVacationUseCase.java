@@ -35,7 +35,6 @@ public class CreateVacationUseCase {
         if (current.isAdmin()) {
             targetEmployeeId = cmd.employeeId() != null ? cmd.employeeId() : current.id();
         } else {
-            // MANAGER e COLLABORATOR só podem criar para si mesmos
             targetEmployeeId = current.id();
             if (cmd.employeeId() != null && !cmd.employeeId().equals(current.id())) {
                 throw new ForbiddenDomainException("Você só pode solicitar férias para si mesmo.");

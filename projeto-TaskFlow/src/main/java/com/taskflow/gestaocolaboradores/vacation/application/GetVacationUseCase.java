@@ -37,7 +37,6 @@ public class GetVacationUseCase {
             }
             return withName(request);
         }
-        // MANAGER: pode ver pedidos dos seus subordinados
         var employee = employeeRepo.findById(request.getEmployeeId())
                 .orElseThrow(() -> new NotFoundException("Colaborador não encontrado."));
         if (!current.id().equals(employee.getManagerId())) {

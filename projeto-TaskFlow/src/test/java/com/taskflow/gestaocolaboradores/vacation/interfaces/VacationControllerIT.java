@@ -46,13 +46,13 @@ class VacationControllerIT {
 
     private String adminToken;
     private String manager1Token;
-    private String carlaToken;   // COLLABORATOR under manager1
-    private String caioToken;    // COLLABORATOR under manager1
-    private String crisToken;    // COLLABORATOR under manager2
+    private String carlaToken;
+    private String caioToken;
+    private String crisToken;
 
     @BeforeEach
     void setUp() throws Exception {
-        vacationRepo.deleteAll();   // reset férias entre testes; seed de employees persiste
+        vacationRepo.deleteAll();
         adminToken    = login("admin@taskflow.com",    "password");
         manager1Token = login("manager1@taskflow.com", "password");
         carlaToken    = login("carla@taskflow.com",    "password");
@@ -84,8 +84,6 @@ class VacationControllerIT {
         return JSON.readTree(json).get("id").asText();
     }
 
-    // ── Autenticação ─────────────────────────────────────────────────────────
-
     @Test
     void listVacations_withoutToken_returns401_withEnvelope() throws Exception {
         mvc.perform(get("/api/vacations"))
@@ -95,8 +93,6 @@ class VacationControllerIT {
                 .andExpect(jsonPath("$.timestamp").exists())
                 .andExpect(jsonPath("$.path").value("/api/vacations"));
     }
-
-    // ── Criação ──────────────────────────────────────────────────────────────
 
     @Test
     void createVacation_asCollaborator_returns201_PENDING() throws Exception {
@@ -130,8 +126,6 @@ class VacationControllerIT {
                 .andExpect(jsonPath("$.code").value("VALIDATION_ERROR"));
     }
 
-    // ── Acesso a recurso inexistente ──────────────────────────────────────────
-
     @Test
     void getVacation_nonexistent_returns404_NOT_FOUND() throws Exception {
         mvc.perform(get("/api/vacations/00000000-0000-0000-0000-000000000001")
@@ -140,8 +134,6 @@ class VacationControllerIT {
                 .andExpect(jsonPath("$.code").value("NOT_FOUND"))
                 .andExpect(jsonPath("$.status").value(404));
     }
-
-    // ── Autorização por papel ─────────────────────────────────────────────────
 
     @Test
     void approveVacation_asCollaborator_returns403_FORBIDDEN() throws Exception {
@@ -156,7 +148,6 @@ class VacationControllerIT {
 
     @Test
     void approveVacation_byWrongManager_returns403() throws Exception {
-        // Cris está sob manager2; manager1 não pode aprovar
         String resp = createVacation(crisToken, "2026-09-10", "2026-09-15");
         String id = extractId(resp);
 
@@ -164,8 +155,6 @@ class VacationControllerIT {
                         .header(HttpHeaders.AUTHORIZATION, "Bearer " + manager1Token))
                 .andExpect(status().isForbidden());
     }
-
-    // ── Fluxo happy-path: criar → aprovar ────────────────────────────────────
 
     @Test
     void fullFlow_createAndApprove_returnsAPPROVED() throws Exception {
@@ -179,16 +168,12 @@ class VacationControllerIT {
                 .andExpect(jsonPath("$.decidedBy").exists());
     }
 
-    // ── Sobreposição (RN-1) ───────────────────────────────────────────────────
-
     @Test
     void createVacation_afterAnotherApproved_sameperiod_returns409_VACATION_OVERLAP() throws Exception {
-        // Carla aprova 2026-10-01 a 2026-10-05
         String carlaResp = createVacation(carlaToken, "2026-10-01", "2026-10-05");
         mvc.perform(post("/api/vacations/" + extractId(carlaResp) + "/approve")
                 .header(HttpHeaders.AUTHORIZATION, "Bearer " + manager1Token));
 
-        // Caio tenta o mesmo período → VACATION_OVERLAP
         mvc.perform(post("/api/vacations")
                         .header(HttpHeaders.AUTHORIZATION, "Bearer " + caioToken)
                         .contentType(MediaType.APPLICATION_JSON)
@@ -197,8 +182,6 @@ class VacationControllerIT {
                 .andExpect(jsonPath("$.code").value("VACATION_OVERLAP"))
                 .andExpect(jsonPath("$.status").value(409));
     }
-
-    // ── Transições inválidas (RN-6) ───────────────────────────────────────────
 
     @Test
     void approveAlreadyApproved_returns409_INVALID_STATE_TRANSITION() throws Exception {
@@ -230,8 +213,6 @@ class VacationControllerIT {
                 .andExpect(status().isConflict())
                 .andExpect(jsonPath("$.code").value("INVALID_STATE_TRANSITION"));
     }
-
-    // ── Calendário ────────────────────────────────────────────────────────────
 
     @Test
     void calendarEndpoint_returnsApprovedVacationsInPeriod() throws Exception {

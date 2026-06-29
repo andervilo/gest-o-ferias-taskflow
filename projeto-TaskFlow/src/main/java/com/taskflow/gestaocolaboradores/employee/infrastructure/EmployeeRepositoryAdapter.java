@@ -25,7 +25,6 @@ public class EmployeeRepositoryAdapter implements EmployeeRepository {
 
     @Override
     public Employee save(Employee employee) {
-        // Spring Data chama merge() quando o ID não é nulo — correto para novos e existentes.
         return mapper.toDomain(jpaRepository.save(mapper.toEntity(employee)));
     }
 

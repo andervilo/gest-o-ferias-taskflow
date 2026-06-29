@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.util.UUID;
 
 public record CreateVacationRequest(
-        UUID employeeId,          // opcional; admins podem especificar; demais ignoram
+        UUID employeeId,
         @NotNull LocalDate startDate,
         @NotNull LocalDate endDate,
         String reason
